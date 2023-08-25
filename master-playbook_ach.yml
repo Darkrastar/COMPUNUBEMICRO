@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: actualizar apt cache
+      apt: update_cache=yes
+
+    - name: instalar net-tools
+      apt:
+        name: net-tools
+        state: present
+
+    - name: instalar vim
+      apt:
+        name: vim
+        state: present
+
+    - name: Actualizar e instalar HAProxy
+      apt:
+        update_cache: yes
+        name: haproxy
+        state: present
+
+    - name: Habilitar HAProxy como servicio
+      systemd:
+        name: haproxy
+        enabled: yes

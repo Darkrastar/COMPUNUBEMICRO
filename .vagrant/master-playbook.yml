@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: actualizar apt cache
+    apt: update_cache=yes
+  - name: instalar apache
+    apt: name=apache2 state=present
+    tee /etc/apt/sources.list.d/hashicorp.list
+  - name: instalar consul
+    apt: consul
+    consul -v
